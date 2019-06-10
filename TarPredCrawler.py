@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time, requests
+import numpy as np
 import pandas as pd
 from lxml.html import fromstring
 from sklearn import preprocessing
@@ -17,7 +18,7 @@ from sklearn import preprocessing
 smiles = 'CN1CC[C@]23C4=C5C=CC(O)=C4O[C@H]2[C@@H](O)C=C[C@H]3[C@H]1C5'
 CpdName = 'pomposide I'
 
-driver = webdriver.Chrome('C:\\Users\\c7401370\\Desktop\\ScreeningSlaveWeb\\chromedriver.exe')
+driver = webdriver.Chrome('C:\\Users\\c7401370\\Documents\\GIT\\chromedriver.exe')
 
 ### DEFINE FUNCTIONs ###
 
@@ -179,7 +180,7 @@ def normalize_SwissTargetPrediction (SwissResult):
     x = SwissResult[['prob']].values.astype(float)
     min_max_scaler = preprocessing.MinMaxScaler()
     xScaled = min_max_scaler.fit_transform(x)
-    SwissResult['Swiss_prob'] = xScaled
+    SwissResult['probability'] = xScaled
     SwissOut = SwissResult.drop(['prob'], axis=1)
     return SwissOut
 
@@ -188,7 +189,7 @@ def normalize_SEA (SEAResult):
     x = SEAResult[['trans']].values.astype(float)
     min_max_scaler = preprocessing.MinMaxScaler()
     xScaled = min_max_scaler.fit_transform(x)
-    SEAResult['SEA_prob'] = xScaled
+    SEAResult['probability'] = xScaled
     SEAOut = SEAResult.drop(['prob', 'trans'], axis=1)
     return SEAOut
 
@@ -198,31 +199,34 @@ def normalize_EndocrineDisruptome(EndocrineDisruptomeResult):
     x = EndocrineDisruptomeResult[['trans']].values.astype(float)
     min_max_scaler = preprocessing.MinMaxScaler()
     xScaled = min_max_scaler.fit_transform(x)
-    EndocrineDisruptomeResult['EndoDisr_prob'] = xScaled
+    EndocrineDisruptomeResult['probability'] = xScaled
     EndocrineDisruptomeOut = EndocrineDisruptomeResult.drop(['prob', 'trans'], axis=1)
     return EndocrineDisruptomeOut
 
 ### CALL FUNCTION ###
+print('initialized analysis...')
 
 SwissResult = SwissCrawler(smiles)
 SwissOut = normalize_SwissTargetPrediction (SwissResult)
+print('finsihed SwissTargetPrediction')
+
 
 SEAResult = SEACrawler(smiles)
 SEAOut = normalize_SEA(SEAResult)
 
-EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles)
-EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResult)
+print('finished SEA')
 
+#EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles)
+#EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResult)
 
-#out = pd.concat([SwissResult,SEAResult,EndocrineDisruptomeResult], sort=True)
-
-print(SwissOut)
-print(SEAOut)
-print(EndocrineDisruptomeOut)
+driver.quit()
+concatenated = pd.concat([SwissOut,SEAOut], sort=True)
+table = pd.pivot_table(concatenated, values=['probability'], index=['compound','UniProt_name'], columns=['platform'], aggfunc=np.mean)
+print(table)
 
 #SuperPredCrawler (smiles, SleepTime)
 
 
 
 
-driver.quit()
+
