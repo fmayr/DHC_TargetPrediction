@@ -7,22 +7,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import time, requests
+import argparse
+import requests
 import numpy as np
 import pandas as pd
 from lxml.html import fromstring
 from sklearn import preprocessing
 
-### DEFINE VARIABLES ###
-
-smiles = 'CN1CC[C@]23C4=C5C=CC(O)=C4O[C@H]2[C@@H](O)C=C[C@H]3[C@H]1C5'
-CpdName = 'pomposide I'
-
-driver = webdriver.Chrome('C:\\Users\\c7401370\\Documents\\GIT\\chromedriver.exe')
-
 ### DEFINE FUNCTIONs ###
 
-def SwissCrawler (smiles):
+def SwissCrawler (smiles, CpdName):
     SwissUrl = 'http://www.swisstargetprediction.ch/index.php' # URL of prediction page
     platform = 'SwissTargetPrediction'
     driver.get(SwissUrl) # browsing to prediction page
@@ -30,13 +24,13 @@ def SwissCrawler (smiles):
     SearchField.send_keys(smiles) # send smiles string to smiles input field
     SearchField.submit() # submit filled form
     try:
-        WebDriverWait(driver, 40).until(EC.presence_of_element_located((By.XPATH, '//*[@id="resultTable"]/tbody'))) # wait for the result page to be loaded
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, '//*[@id="resultTable"]/tbody'))) # wait for the result page to be loaded
         CurrUrl = driver.current_url # get url of result page
         df = pd.read_html(CurrUrl) # move result table into pandas dataframe
         df = df[0] # eliminating all but the result table
         cols = [col for col in df.columns if col in [df.columns[2],df.columns[5]]] # keeping only 2 columns
         df = df[cols]
-        dfKeep = df[df.columns[1]] > 0.0999999 # remove all below probability of 0.1
+        dfKeep = df[df.columns[1]] > 0.999999 # remove all below probability of 0.1
         df = df[dfKeep]
         df.insert(0,'compound',CpdName) # insert compound name in new column
         df.insert(1,'platform',platform) # insert platform name in new column
@@ -50,20 +44,23 @@ def SwissCrawler (smiles):
                 EntryName = Entr[1:-1]
                 newCol.append(EntryName)
             else:
-                print('could not find UniProt Number...')
+                print('         could not find UniProt-entry with number "{}"'.format(id))
         df['UniProt_name'] = newCol
         df = df.drop('uniprotID', axis=1) # UniProt entry names assigned and entry numbers dropped
         return df
     except TimeoutException:
-        print('reached timeout of result page')
-        df.insert(0,'compound',CpdName) # insert compound name in new column
-        df.insert(1,'platform',platform) # insert platform name in new column
-        df.insert(2,'targetkey',str(driver.current_url)) # insert platform name in new column
-        df.insert(3,'prob','empty') # insert platform name in new column
+        CurrUrl = driver.current_url
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        temp = [CpdName, platform, driver.current_url]
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'result page reached timeout',
+            'prob':CurrUrl,},
+            ignore_index=True)
     finally:
         return df
 
-def SEACrawler (smiles):
+def SEACrawler (smiles, CpdName):
     SEAUrl = 'http://sea.bkslab.org/' # URL of prediction page
     platform = 'SEA'
     driver.get(SEAUrl) # browsing to prediction page
@@ -71,7 +68,7 @@ def SEACrawler (smiles):
     SearchField.send_keys(smiles) # send smiles string to smiles input field
     SearchField.submit() # submit filled form
     try:
-        WebDriverWait(driver, 40).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/table/tbody'))) # wait for the result page to be loaded
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/table/tbody'))) # wait for the result page to be loaded
         CurrUrl = driver.current_url # get url of result page
         df = pd.read_html(CurrUrl) # move result table into pandas dataframe
         df = df[0] # eliminating all but the result table
@@ -89,11 +86,14 @@ def SEACrawler (smiles):
         df = df.drop('targetkey', axis=1)
         df['UniProt_name'] = genes #string manipulation to yield uniprot names
     except TimeoutException:
-        print('reached timeout of result page')
-        df.insert(0,'compound',CpdName) # insert compound name in new column
-        df.insert(1,'platform',platform) # insert platform name in new column
-        df.insert(2,'targetkey',str(driver.current_url)) # insert platform name in new column
-        df.insert(3,'prob','empty') # insert platform name in new column
+        CurrUrl = driver.current_url
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        temp = [CpdName, platform, driver.current_url]
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'result page reached timeout',
+            'prob':CurrUrl,},
+            ignore_index=True)
     finally:
         return df
 
@@ -125,7 +125,7 @@ def SuperPredCrawler (smiles, SleepTime):
 
     print('************************************************')
 
-def EndocrineDisruptomeCrawler (smiles):
+def EndocrineDisruptomeCrawler (smiles, CpdName):
     platform = 'Endocrine Disruptome'
     EDurl = 'http://endocrinedisruptome.ki.si/prediction.html'
     driver.get(EDurl)
@@ -168,11 +168,14 @@ def EndocrineDisruptomeCrawler (smiles):
         }) # changes target names to UniProt nomenclature
         df = df.rename(columns={'target': 'UniProt_name', 'DockingScore':'prob'}) # rename headers
     except TimeoutException:
-        print('reached timeout of result page')
-        df.insert(0,'compound',CpdName) # insert compound name in new column
-        df.insert(1,'platform',platform) # insert platform name in new column
-        df.insert(2,'targetkey',str(driver.current_url)) # insert platform name in new column
-        df.insert(3,'prob','empty') # insert platform name in new column
+        CurrUrl = driver.current_url
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        temp = [CpdName, platform, driver.current_url]
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'result page reached timeout',
+            'prob':CurrUrl,},
+            ignore_index=True)
     finally:
         return df
 
@@ -186,7 +189,7 @@ def normalize_SwissTargetPrediction (SwissResult):
 
 def normalize_SEA (SEAResult):
     SEAResult['trans'] = 1/ SEAResult['prob']
-    x = SEAResult[['trans']].values.astype(float)
+    x = SEAResult['trans'].values.astype(float)
     min_max_scaler = preprocessing.MinMaxScaler()
     xScaled = min_max_scaler.fit_transform(x)
     SEAResult['probability'] = xScaled
@@ -196,37 +199,92 @@ def normalize_SEA (SEAResult):
 def normalize_EndocrineDisruptome(EndocrineDisruptomeResult):
     EndocrineDisruptomeResult['prob'] = EndocrineDisruptomeResult[['prob']].values.astype(float)
     EndocrineDisruptomeResult['trans'] = EndocrineDisruptomeResult['prob']*(-1)
-    x = EndocrineDisruptomeResult[['trans']].values.astype(float)
+    x = EndocrineDisruptomeResult['trans'].values.astype(float)
     min_max_scaler = preprocessing.MinMaxScaler()
     xScaled = min_max_scaler.fit_transform(x)
     EndocrineDisruptomeResult['probability'] = xScaled
     EndocrineDisruptomeOut = EndocrineDisruptomeResult.drop(['prob', 'trans'], axis=1)
     return EndocrineDisruptomeOut
 
-### CALL FUNCTION ###
-print('initialized analysis...')
+### INITIALIZE SCRIPT ###
 
-SwissResult = SwissCrawler(smiles)
-SwissOut = normalize_SwissTargetPrediction (SwissResult)
-print('finsihed SwissTargetPrediction')
+if __name__ == '__main__':
+    print('\n\n')
+    print('     TarPredCrawler initialized...')
+    print('\n\n')
 
+    ### PROCESS INPUT ###
 
-SEAResult = SEACrawler(smiles)
-SEAOut = normalize_SEA(SEAResult)
+    parser = argparse.ArgumentParser(description='Crawl throug 4 Target Prediction Servers')
+    parser.add_argument('-in',
+        '--input',
+        type=str,
+        metavar='',
+        required=True,
+        help='csv-table in the format "name ; smiles-code" of n compounds')
+    parser.add_argument('-out',
+        '--output',
+        type=str,
+        metavar='',
+        required=True,
+        help='csv-table populated with processed results')
+    args = parser.parse_args()
 
-print('finished SEA')
+    ### READ IN INPUT ###
 
-#EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles)
-#EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResult)
+    with open (args.input, 'r') as fin:
+        data = pd.read_csv(fin, sep=';', names=['name','smiles'])
+    rowcount = data['name'].count()
+    print('     Found {} molecules in "{}"\n'.format(rowcount, args.input))
+    print('     Start screening:')
 
-driver.quit()
-concatenated = pd.concat([SwissOut,SEAOut], sort=True)
-table = pd.pivot_table(concatenated, values=['probability'], index=['compound','UniProt_name'], columns=['platform'], aggfunc=np.mean)
-print(table)
+    ### START CRAWLING ###
+
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    driver = webdriver.Chrome('C:\\Users\\c7401370\\Desktop\\ScreeningSlaveWeb\\chromedriver.exe', options=options)
+
+    cols = ['compound','platform','UniProt_name','prob']
+    SwissResults = pd.DataFrame()
+    SEAResults = pd.DataFrame()
+    EndocrineDisruptomeResults = pd.DataFrame()
+
+    for index, row in data.iterrows():
+        CpdName = row['name']
+        smiles = row['smiles']
+        SwissResult = SwissCrawler(smiles, CpdName)
+        SwissResults = SwissResults.append(SwissResult)
+        SEAResult = SEACrawler(smiles, CpdName)
+        SEAResults = SEAResults.append(SEAResult,sort=True)
+        EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles, CpdName)
+        EndocrineDisruptomeResults = EndocrineDisruptomeResults.append(EndocrineDisruptomeResult)
+        print('         screened {} of {} ({})'.format(index+1, rowcount, CpdName))
+    #SwissNorm = normalize_SwissTargetPrediction(SwissResults)
+    #SEANorm = normalize_SEA(SEAResults)
+    #EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResults)
+
+    Concatenated = pd.concat([SwissResults,SEAResults,EndocrineDisruptomeResults],sort=True)
+
+    ErrorRows = Concatenated['UniProt_name'] == 'result page reached timeout'
+    Errors = Concatenated[ErrorRows]
+    Errors.to_csv('{}_errors.csv'.format(args.input),sep=';')
+
+    ConcKeep = Concatenated['UniProt_name'] != 'result page reached timeout'
+    Filtered = Concatenated[ConcKeep]
+
+    Pivoted = pd.pivot_table(Filtered,
+        values=['prob'],
+        index=['compound','UniProt_name'],
+        columns=['platform'],
+        aggfunc='first',
+        fill_value='NaN')
+    Pivoted.to_csv(args.output,sep=';')
+    driver.quit()
+    print('')
+    print('     Finished Analysis')
+    print('     Results are now available in "{}"'.format(args.output))
+    #print(Filtered)
+    #print(SEAResults)
+
 
 #SuperPredCrawler (smiles, SleepTime)
-
-
-
-
-
