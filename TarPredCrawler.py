@@ -30,7 +30,7 @@ def SwissCrawler (smiles, CpdName):
         df = df[0] # eliminating all but the result table
         cols = [col for col in df.columns if col in [df.columns[2],df.columns[5]]] # keeping only 2 columns
         df = df[cols]
-        dfKeep = df[df.columns[1]] > 0.999999 # remove all below probability of 0.1
+        dfKeep = df[df.columns[1]] > 0.199999 # remove all below probability of 0.2
         df = df[dfKeep]
         df.insert(0,'compound',CpdName) # insert compound name in new column
         df.insert(1,'platform',platform) # insert platform name in new column
@@ -97,33 +97,43 @@ def SEACrawler (smiles, CpdName):
     finally:
         return df
 
-def SuperPredCrawler (smiles, SleepTime):
+def SuperPredCrawler (smiles, CpdName):
+    platform = 'SuperPred'
     SPUrl = 'http://prediction.charite.de/index.php?site=chemdoodle_search_target'
-    SPUrlResult = 'http://prediction.charite.de/index.php?site=pred_results'
     driver.get(SPUrl)
     SearchField = driver.find_element_by_xpath('//*[@id="contentwrapper"]/div/div[1]/div[2]/form/table/tbody/tr[2]/td[2]/input[1]')
     SearchField.send_keys(smiles)
     smiles_button = driver.find_elements_by_xpath('//*[@id="contentwrapper"]/div/div[1]/div[2]/form/table/tbody/tr[2]/td[2]/input[2]')[0]
     smiles_button.click()
-    time.sleep(50)
-    r = requests.get(SPUrlResult)
+    submit_button = driver.find_element_by_xpath('//*[@id="contentwrapper"]/div/div[4]/table/tbody/tr[2]/td/input[1]')
+    submit_button.click()
+    try:
+        #WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[@id="container"]/div[@id="contentwrapper"]/pre/div[@id="hits"]/div[@id="hits"]/center/div[@class="shadow"]/form/input[@type="submit"]')))
+        WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hits"]/center/div/form/input[@type="submit"]')))
+        redirect = driver.find_element_by_xpath('//*[@id="hits"]/center/div/form/input[@type="submit"]')
 
-    #submit_button = driver.find_elements_by_name('start')
-    #submit_button.click()
-    #time.sleep(15)
-    #submit_button.click()
-
-    cookies = {'enwiki_session': '17ab96bd8ffbe8ca58a78657a918558'}
-    r = requests.post('http://wikipedia.org', cookies=cookies)
-
-    print(r.text)
-
-    print('yess')
-
-
-
-
-    print('************************************************')
+        redirect.click()
+        targets = driver.find_elements_by_xpath('//*[@id="contentwrapper"]/div[3]/a/div[1]/div/table/tbody/tr/td[2]/select//option')
+        preds = []
+        for tars in targets:
+            targetsExtr = tars.get_attribute('value')
+            preds.append(targetsExtr)
+        df = pd.DataFrame(preds, columns=['temp'])
+        df = df['temp'].str.split(',', n = 1, expand = True)
+        df.columns = ['UniProt_name','prob']
+        df.insert(0,'compound',CpdName) # inroduce two columns with compound name and name of the tool
+        df.insert(1,'platform',platform)
+    except TimeoutException:
+        CurrUrl = driver.current_url
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        temp = [CpdName, platform, driver.current_url]
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'result page reached timeout',
+            'prob':CurrUrl,},
+            ignore_index=True)
+    finally:
+        return df
 
 def EndocrineDisruptomeCrawler (smiles, CpdName):
     platform = 'Endocrine Disruptome'
@@ -134,7 +144,7 @@ def EndocrineDisruptomeCrawler (smiles, CpdName):
     SubmitButton = driver.find_elements_by_xpath('//*[@id="selected-button"]')[0]
     SubmitButton.click()
     try:
-        WebDriverWait(driver, 600).until(EC.presence_of_element_located((By.XPATH, '//*[@id="top"]/div/div[5]/div[1]'))) # wait for the result page to be loaded
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, '//*[@id="top"]/div/div[5]/div[1]'))) # wait for the result page to be loaded
         CurrUrl = driver.current_url # get url of result page
         r = requests.get(CurrUrl) # retrieve result page
         html = fromstring(r.content) # convert to html to make it searchable with XPath
@@ -247,6 +257,7 @@ if __name__ == '__main__':
     cols = ['compound','platform','UniProt_name','prob']
     SwissResults = pd.DataFrame()
     SEAResults = pd.DataFrame()
+    SuperPredResults = pd.DataFrame()
     EndocrineDisruptomeResults = pd.DataFrame()
 
     for index, row in data.iterrows():
@@ -256,29 +267,31 @@ if __name__ == '__main__':
         SwissResults = SwissResults.append(SwissResult)
         SEAResult = SEACrawler(smiles, CpdName)
         SEAResults = SEAResults.append(SEAResult,sort=True)
-        EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles, CpdName)
-        EndocrineDisruptomeResults = EndocrineDisruptomeResults.append(EndocrineDisruptomeResult)
-        print('         screened {} of {} ({})'.format(index+1, rowcount, CpdName))
+        SuperPredResult = SuperPredCrawler(smiles, CpdName)
+        SuperPredResults = SuperPredResults.append(SuperPredResult)
+        #EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles, CpdName)
+        #EndocrineDisruptomeResults = EndocrineDisruptomeResults.append(EndocrineDisruptomeResult)
+        print('         screened {} of {} molecules ({})'.format(index+1, rowcount, CpdName))
     #SwissNorm = normalize_SwissTargetPrediction(SwissResults)
     #SEANorm = normalize_SEA(SEAResults)
     #EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResults)
 
-    Concatenated = pd.concat([SwissResults,SEAResults,EndocrineDisruptomeResults],sort=True)
+    Concatenated = pd.concat([SwissResults,SEAResults,SuperPredResults,EndocrineDisruptomeResults],sort=True)
 
-    ErrorRows = Concatenated['UniProt_name'] == 'result page reached timeout'
-    Errors = Concatenated[ErrorRows]
-    Errors.to_csv('{}_errors.csv'.format(args.input),sep=';')
+    #ErrorRows = Concatenated['UniProt_name'] == 'result page reached timeout'
+    #Errors = Concatenated[ErrorRows]
+    #Errors.to_csv('{}_errors.csv'.format(args.input),sep=';')
+    #
+    #ConcKeep = Concatenated['UniProt_name'] != 'result page reached timeout'
+    #Filtered = Concatenated[ConcKeep]
 
-    ConcKeep = Concatenated['UniProt_name'] != 'result page reached timeout'
-    Filtered = Concatenated[ConcKeep]
-
-    Pivoted = pd.pivot_table(Filtered,
-        values=['prob'],
-        index=['compound','UniProt_name'],
-        columns=['platform'],
-        aggfunc='first',
-        fill_value='NaN')
-    Pivoted.to_csv(args.output,sep=';')
+    #Pivoted = pd.pivot_table(Filtered,
+    #    values=['prob'],
+    #    index=['compound','UniProt_name'],
+    #    columns=['platform'],
+    #    aggfunc='first',
+    #    fill_value='NaN')
+    Concatenated.to_csv(args.output,sep=';')
     driver.quit()
     print('')
     print('     Finished Analysis')
