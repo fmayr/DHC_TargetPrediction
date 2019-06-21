@@ -37,12 +37,12 @@ def SwissCrawler (smiles, CpdName):
         df = df.rename(columns={"Uniprot ID": "uniprotID", "Probability*": "prob"}) # rename headers
         newCol = []
         for id in df.uniprotID.values:
-            resp = requests.get('https://www.uniprot.org/uniprot/' + str(id)) # UniProt entry number are translated to entry names via UniProt
+            resp = requests.get('https://www.uniprot.org/uniprot/' + str(id) + '.xml') # UniProt entry number are translated to entry names via UniProt
             if resp.ok:
                 html = fromstring (resp.content)
-                Entr = html.xpath('//*[@id="page-header"]/h2/span/text()')[0] # extract entry names from uniprot
-                EntryName = Entr[1:-1]
-                newCol.append(EntryName)
+                Entr = html.xpath('//entry[@dataset="Swiss-Prot"]/name/text()')[0] # extract entry names from uniprot
+                #EntryName = Entr[1:-1]
+                newCol.append(Entr)
             else:
                 print('             could not find UniProt-entry with number "{}"'.format(id))
         df['UniProt_name'] = newCol
@@ -110,7 +110,6 @@ def SuperPredCrawler (smiles, CpdName):
     try:
         WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hits"]/center/div/form/input[@type="submit"]')))
         redirect = driver.find_element_by_xpath('//*[@id="hits"]/center/div/form/input[@type="submit"]')
-
         redirect.click()
         targets = driver.find_elements_by_xpath('//*[@id="contentwrapper"]/div[3]/a/div[1]/div/table/tbody/tr/td[2]/select//option')
         preds = []
@@ -122,6 +121,7 @@ def SuperPredCrawler (smiles, CpdName):
         df.columns = ['UniProt_name','prob']
         df.insert(0,'compound',CpdName) # inroduce two columns with compound name and name of the tool
         df.insert(1,'platform',platform)
+        df = df[['compound','platform','prob','UniProt_name']]
     except TimeoutException:
         CurrUrl = driver.current_url
         df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
