@@ -30,7 +30,7 @@ def SwissCrawler (smiles, CpdName):
         df = df[0] # eliminating all but the result table
         cols = [col for col in df.columns if col in [df.columns[2],df.columns[5]]] # keeping only 2 columns
         df = df[cols]
-        dfKeep = df[df.columns[1]] > 0.199999 # remove all below probability of 0.2
+        dfKeep = df[df.columns[1]] > 0.119999 # remove all below probability of 0.12
         df = df[dfKeep]
         df.insert(0,'compound',CpdName) # insert compound name in new column
         df.insert(1,'platform',platform) # insert platform name in new column
@@ -44,7 +44,7 @@ def SwissCrawler (smiles, CpdName):
                 EntryName = Entr[1:-1]
                 newCol.append(EntryName)
             else:
-                print('         could not find UniProt-entry with number "{}"'.format(id))
+                print('             could not find UniProt-entry with number "{}"'.format(id))
         df['UniProt_name'] = newCol
         df = df.drop('uniprotID', axis=1) # UniProt entry names assigned and entry numbers dropped
         return df
@@ -108,7 +108,6 @@ def SuperPredCrawler (smiles, CpdName):
     submit_button = driver.find_element_by_xpath('//*[@id="contentwrapper"]/div/div[4]/table/tbody/tr[2]/td/input[1]')
     submit_button.click()
     try:
-        #WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[@id="container"]/div[@id="contentwrapper"]/pre/div[@id="hits"]/div[@id="hits"]/center/div[@class="shadow"]/form/input[@type="submit"]')))
         WebDriverWait(driver, 60).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hits"]/center/div/form/input[@type="submit"]')))
         redirect = driver.find_element_by_xpath('//*[@id="hits"]/center/div/form/input[@type="submit"]')
 
@@ -189,38 +188,11 @@ def EndocrineDisruptomeCrawler (smiles, CpdName):
     finally:
         return df
 
-def normalize_SwissTargetPrediction (SwissResult):
-    x = SwissResult[['prob']].values.astype(float)
-    min_max_scaler = preprocessing.MinMaxScaler()
-    xScaled = min_max_scaler.fit_transform(x)
-    SwissResult['probability'] = xScaled
-    SwissOut = SwissResult.drop(['prob'], axis=1)
-    return SwissOut
-
-def normalize_SEA (SEAResult):
-    SEAResult['trans'] = 1/ SEAResult['prob']
-    x = SEAResult['trans'].values.astype(float)
-    min_max_scaler = preprocessing.MinMaxScaler()
-    xScaled = min_max_scaler.fit_transform(x)
-    SEAResult['probability'] = xScaled
-    SEAOut = SEAResult.drop(['prob', 'trans'], axis=1)
-    return SEAOut
-
-def normalize_EndocrineDisruptome(EndocrineDisruptomeResult):
-    EndocrineDisruptomeResult['prob'] = EndocrineDisruptomeResult[['prob']].values.astype(float)
-    EndocrineDisruptomeResult['trans'] = EndocrineDisruptomeResult['prob']*(-1)
-    x = EndocrineDisruptomeResult['trans'].values.astype(float)
-    min_max_scaler = preprocessing.MinMaxScaler()
-    xScaled = min_max_scaler.fit_transform(x)
-    EndocrineDisruptomeResult['probability'] = xScaled
-    EndocrineDisruptomeOut = EndocrineDisruptomeResult.drop(['prob', 'trans'], axis=1)
-    return EndocrineDisruptomeOut
-
 ### INITIALIZE SCRIPT ###
 
 if __name__ == '__main__':
     print('\n\n')
-    print('     TarPredCrawler initialized...')
+    print('TarPredCrawler initialized...')
     print('\n\n')
 
     ### PROCESS INPUT ###
@@ -254,50 +226,26 @@ if __name__ == '__main__':
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome('C:\\Users\\c7401370\\Desktop\\ScreeningSlaveWeb\\chromedriver.exe', options=options)
 
-    cols = ['compound','platform','UniProt_name','prob']
-    SwissResults = pd.DataFrame()
-    SEAResults = pd.DataFrame()
-    SuperPredResults = pd.DataFrame()
-    EndocrineDisruptomeResults = pd.DataFrame()
+    cols = ['compound','platform','prob','UniProt_name']
+
+    results = pd.DataFrame(columns=cols)
+    results.to_csv(args.output,sep=';') # write empty dataframe as csv file
 
     for index, row in data.iterrows():
         CpdName = row['name']
         smiles = row['smiles']
         SwissResult = SwissCrawler(smiles, CpdName)
-        SwissResults = SwissResults.append(SwissResult)
         SEAResult = SEACrawler(smiles, CpdName)
-        SEAResults = SEAResults.append(SEAResult,sort=True)
         SuperPredResult = SuperPredCrawler(smiles, CpdName)
-        SuperPredResults = SuperPredResults.append(SuperPredResult)
         #EndocrineDisruptomeResult = EndocrineDisruptomeCrawler(smiles, CpdName)
-        #EndocrineDisruptomeResults = EndocrineDisruptomeResults.append(EndocrineDisruptomeResult)
+        with open (args.output,'a',newline='') as f:
+            SwissResult.to_csv(f,sep=';',header=False)
+            SEAResult.to_csv(f,sep=';',header=False)
+            SuperPredResult.to_csv(f,sep=';',header=False)
+            #EndocrineDisruptomeResult.to_csv(f,sep=';',header=False)
         print('         screened {} of {} molecules ({})'.format(index+1, rowcount, CpdName))
-    #SwissNorm = normalize_SwissTargetPrediction(SwissResults)
-    #SEANorm = normalize_SEA(SEAResults)
-    #EndocrineDisruptomeOut = normalize_EndocrineDisruptome(EndocrineDisruptomeResults)
 
-    Concatenated = pd.concat([SwissResults,SEAResults,SuperPredResults,EndocrineDisruptomeResults],sort=True)
-
-    #ErrorRows = Concatenated['UniProt_name'] == 'result page reached timeout'
-    #Errors = Concatenated[ErrorRows]
-    #Errors.to_csv('{}_errors.csv'.format(args.input),sep=';')
-    #
-    #ConcKeep = Concatenated['UniProt_name'] != 'result page reached timeout'
-    #Filtered = Concatenated[ConcKeep]
-
-    #Pivoted = pd.pivot_table(Filtered,
-    #    values=['prob'],
-    #    index=['compound','UniProt_name'],
-    #    columns=['platform'],
-    #    aggfunc='first',
-    #    fill_value='NaN')
-    Concatenated.to_csv(args.output,sep=';')
     driver.quit()
     print('')
     print('     Finished Analysis')
     print('     Results are now available in "{}"'.format(args.output))
-    #print(Filtered)
-    #print(SEAResults)
-
-
-#SuperPredCrawler (smiles, SleepTime)
