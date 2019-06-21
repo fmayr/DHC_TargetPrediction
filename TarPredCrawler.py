@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import UnexpectedAlertPresentException
 import argparse
 import requests
 import numpy as np
@@ -41,7 +42,6 @@ def SwissCrawler (smiles, CpdName):
             if resp.ok:
                 html = fromstring (resp.content)
                 Entr = html.xpath('//entry[@dataset="Swiss-Prot"]/name/text()')[0] # extract entry names from uniprot
-                #EntryName = Entr[1:-1]
                 newCol.append(Entr)
             else:
                 print('             could not find UniProt-entry with number "{}"'.format(id))
@@ -57,7 +57,16 @@ def SwissCrawler (smiles, CpdName):
             'UniProt_name':'result page reached timeout',
             'prob':CurrUrl,},
             ignore_index=True)
-    finally:
+        return df
+    except UnexpectedAlertPresentException:
+        alert = driver.switch_to.alert
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'error message',
+            'prob':alert.text},
+            ignore_index=True)
+        alert.accept()
         return df
 
 def SEACrawler (smiles, CpdName):
@@ -85,6 +94,7 @@ def SEACrawler (smiles, CpdName):
             genes.append(gene)
         df = df.drop('targetkey', axis=1)
         df['UniProt_name'] = genes #string manipulation to yield uniprot names
+        return df
     except TimeoutException:
         CurrUrl = driver.current_url
         df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
@@ -94,8 +104,19 @@ def SEACrawler (smiles, CpdName):
             'UniProt_name':'result page reached timeout',
             'prob':CurrUrl,},
             ignore_index=True)
-    finally:
         return df
+    except UnexpectedAlertPresentException:
+        alert = driver.switch_to.alert
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'error message',
+            'prob':alert.text},
+            ignore_index=True)
+        alert.accept()
+        return df
+    #finally:
+    #    return df
 
 def SuperPredCrawler (smiles, CpdName):
     platform = 'SuperPred'
@@ -117,11 +138,18 @@ def SuperPredCrawler (smiles, CpdName):
             targetsExtr = tars.get_attribute('value')
             preds.append(targetsExtr)
         df = pd.DataFrame(preds, columns=['temp'])
-        df = df['temp'].str.split(',', n = 1, expand = True)
-        df.columns = ['UniProt_name','prob']
-        df.insert(0,'compound',CpdName) # inroduce two columns with compound name and name of the tool
-        df.insert(1,'platform',platform)
-        df = df[['compound','platform','prob','UniProt_name']]
+        if df['temp'].count() > 0:
+            df = df['temp'].str.split(',', n=1, expand=True)
+            df.columns = ['UniProt_name','prob']
+            df.insert(0,'compound',CpdName) # inroduce two columns with compound name and name of the tool
+            df.insert(1,'platform',platform)
+            df = df[['compound','platform','prob','UniProt_name']]
+        else:
+            df.insert(0,'compound',CpdName) # inroduce two columns with compound name and name of the tool
+            df.insert(1,'platform',platform)
+            df.insert(2,'prob','error message')
+            df.insert(3,'UniProt_name','no predictions found')
+        return df
     except TimeoutException:
         CurrUrl = driver.current_url
         df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
@@ -129,10 +157,21 @@ def SuperPredCrawler (smiles, CpdName):
         df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
             'platform':platform,
             'UniProt_name':'result page reached timeout',
-            'prob':CurrUrl,},
+            'prob':CurrUrl},
             ignore_index=True)
-    finally:
         return df
+    except UnexpectedAlertPresentException:
+        alert = driver.switch_to.alert
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'error message',
+            'prob':alert.text},
+            ignore_index=True)
+        alert.accept()
+        return df
+    #finally:
+    #    return df
 
 def EndocrineDisruptomeCrawler (smiles, CpdName):
     platform = 'Endocrine Disruptome'
@@ -185,8 +224,18 @@ def EndocrineDisruptomeCrawler (smiles, CpdName):
             'UniProt_name':'result page reached timeout',
             'prob':CurrUrl,},
             ignore_index=True)
-    finally:
+    except UnexpectedAlertPresentException:
+        alert = driver.switch_to.alert
+        df = pd.DataFrame(columns=['compound','platform','UniProt_name','prob'])
+        df = df.append({'compound':CpdName, # creates row with name; platform; url of result table
+            'platform':platform,
+            'UniProt_name':'error message',
+            'prob':alert.text},
+            ignore_index=True)
+        alert.accept()
         return df
+    #finally:
+    #    return df
 
 ### INITIALIZE SCRIPT ###
 
