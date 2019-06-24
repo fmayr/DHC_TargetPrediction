@@ -31,7 +31,7 @@ def SwissCrawler (smiles, CpdName):
         df = df[0] # eliminating all but the result table
         cols = [col for col in df.columns if col in [df.columns[2],df.columns[5]]] # keeping only 2 columns
         df = df[cols]
-        dfKeep = df[df.columns[1]] > 0.119999 # remove all below probability of 0.12
+        dfKeep = df[df.columns[1]] > 0.09999 # remove all below probability of 0.12
         df = df[dfKeep]
         df.insert(0,'compound',CpdName) # insert compound name in new column
         df.insert(1,'platform',platform) # insert platform name in new column
@@ -40,11 +40,13 @@ def SwissCrawler (smiles, CpdName):
         for id in df.uniprotID.values:
             resp = requests.get('https://www.uniprot.org/uniprot/' + str(id) + '.xml') # UniProt entry number are translated to entry names via UniProt
             if resp.ok:
+                print(id)
                 html = fromstring (resp.content)
-                Entr = html.xpath('//entry[@dataset="Swiss-Prot"]/name/text()')[0] # extract entry names from uniprot
+                Entr = html.xpath('//entry/name/text()')[0] # extract entry names from uniprot
                 newCol.append(Entr)
             else:
                 print('             could not find UniProt-entry with number "{}"'.format(id))
+                newCol.append('More than one UniProt numbers: '+id)
         df['UniProt_name'] = newCol
         df = df.drop('uniprotID', axis=1) # UniProt entry names assigned and entry numbers dropped
         return df
