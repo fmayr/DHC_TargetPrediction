@@ -37,16 +37,23 @@ def SwissCrawler (smiles, CpdName):
         df.insert(1,'platform',platform) # insert platform name in new column
         df = df.rename(columns={"Uniprot ID": "uniprotID", "Probability*": "prob"}) # rename headers
         newCol = []
-        for id in df.uniprotID.values:
-            resp = requests.get('https://www.uniprot.org/uniprot/' + str(id) + '.xml') # UniProt entry number are translated to entry names via UniProt
-            if resp.ok:
-                print(id)
-                html = fromstring (resp.content)
-                Entr = html.xpath('//entry/name/text()')[0] # extract entry names from uniprot
+        def get_uniprot_name(entry):
+            resp = requests.get('https://www.uniprot.org/uniprot/' + str(entry) + '.xml')
+            html = fromstring (resp.content)
+            Entr = html.xpath('//entry/name/text()')[0]
+            return Entr
+        for entry in df.uniprotID.values:
+            if entry.count(' ') == 0:
+                Entr = get_uniprot_name(entry)
                 newCol.append(Entr)
             else:
-                print('             could not find UniProt-entry with number "{}"'.format(id))
-                newCol.append('More than one UniProt numbers: '+id)
+                new_lst = entry.split(' ')
+                new_Entr = []
+                for i in new_lst:
+                    Entr = get_uniprot_name(i)
+                    new_Entr.append(Entr)
+                    new = '|'.join(new_Entr)
+                newCol.append(new)
         df['UniProt_name'] = newCol
         df = df.drop('uniprotID', axis=1) # UniProt entry names assigned and entry numbers dropped
         return df
