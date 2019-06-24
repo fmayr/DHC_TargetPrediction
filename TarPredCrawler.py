@@ -13,6 +13,7 @@ import requests
 import numpy as np
 import pandas as pd
 from lxml.html import fromstring
+from lxml import etree
 from sklearn import preprocessing
 
 ### DEFINE FUNCTIONs ###
@@ -39,21 +40,29 @@ def SwissCrawler (smiles, CpdName):
         newCol = []
         def get_uniprot_name(entry):
             resp = requests.get('https://www.uniprot.org/uniprot/' + str(entry) + '.xml')
-            html = fromstring (resp.content)
-            Entr = html.xpath('//entry/name/text()')[0]
-            return Entr
+            try:
+                html = fromstring (resp.content)
+                Entr = html.xpath('//entry/name/text()')[0]
+                return Entr
+            except etree.ParserError:
+                Entr = 'no_entry_found_in_uniprot'
+                return Entr
         for entry in df.uniprotID.values:
             if entry.count(' ') == 0:
                 Entr = get_uniprot_name(entry)
                 newCol.append(Entr)
+                #print(entry)
             else:
                 new_lst = entry.split(' ')
                 new_Entr = []
                 for i in new_lst:
                     Entr = get_uniprot_name(i)
                     new_Entr.append(Entr)
-                    new = '|'.join(new_Entr)
+                new = '|'.join(new_Entr)
                 newCol.append(new)
+                #print(new)
+        #print(len(newCol))
+        #print(df.shape)
         df['UniProt_name'] = newCol
         df = df.drop('uniprotID', axis=1) # UniProt entry names assigned and entry numbers dropped
         return df
@@ -282,7 +291,7 @@ if __name__ == '__main__':
 
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    driver = webdriver.Chrome('C:\\Users\\c7401370\\Desktop\\ScreeningSlaveWeb\\chromedriver.exe', options=options)
+    driver = webdriver.Chrome('C:\\Users\\c7401370\\Documents\\GIT\\chromedriver.exe', options=options)
 
     cols = ['compound','platform','prob','UniProt_name']
 
