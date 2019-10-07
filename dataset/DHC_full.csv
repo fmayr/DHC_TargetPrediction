@@ -3,7 +3,7 @@
 (-) Linderatin;CC(C)[C@@H]1CCC(=C[C@@H]1c2c(O)cc(O)c(C(=O)CCc3ccccc3)c2O)C
 (-) Methyllinderatin;COc1cc(O)c(C(=O)CCc2ccccc2)c(O)c1[C@H]3C=C(C)CC[C@H]3C(C)C
 (-) Neolinderatin;CC(C)[C@@H]1CCC(=C[C@@H]1c2c(O)c([C@H]3C=C(C)CC[C@H]3C(C)C)c(O)c(C(=O)CCc4ccccc4)c2O)C
-(±) Adunctin B;COc1cc(O)c(C(=O)CCc2ccccc2)c3O[C@@]4(C)C=C[C@@H](C[C@H]4c13)C(C)C
+(Â±) Adunctin B;COc1cc(O)c(C(=O)CCc2ccccc2)c3O[C@@]4(C)C=C[C@@H](C[C@H]4c13)C(C)C
 1000268-43-8;COc1c(O)ccc(C(=O)CCc2ccc(O)cc2)c1O
 100634-10-4;Oc1ccc(C(=O)CCc2ccc(O)c(O)c2)c(O)c1
 104937-47-5 (R);Oc1cc(O)c(C(=O)CCc2ccccc2)c3OC(=O)C[C@@H](c4ccccc4)c13
@@ -220,7 +220,7 @@
 96400-40-7 (S);CO[C@@H](CC(=O)c1ccc(OC)cc1OC)c2ccc3OCOc3c2
 96400-41-8 (R);CO[C@H](CC(=O)c1ccc2OCOc2c1)c3ccc(OC)cc3OC
 96400-41-8 (S);CO[C@@H](CC(=O)c1ccc2OCOc2c1)c3ccc(OC)cc3OC
-a,ß-Dihydroxanthohumol;CC(=CCc1c(O)cc(O)c(C(=O)CCc2ccc(O)cc2)c1O)C
+a,ÃŸ-Dihydroxanthohumol;CC(=CCc1c(O)cc(O)c(C(=O)CCc2ccc(O)cc2)c1O)C
 Abacopterin L;COc1ccc(cc1)C(=O)CCc2c(O)c(C)c(O)c(C)c2O[C@@H]3O[C@H](COC(=O)C)[C@@H](O)C(O)[C@H]3O
 Acumitin;Oc1ccccc1Cc2c(O)c(C(=O)CCc3ccccc3)c4Oc5ccccc5C(=O)c4c2O
 Adunctin A;COc1cc(O)c(C(=O)CCc2ccccc2)c(O[C@]3(CCC(=CC3)C)C(C)C)c1
