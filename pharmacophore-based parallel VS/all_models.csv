@@ -1,0 +1,380 @@
+model;software;UniProt
+model_DS4;Discovery Studio;3BHS1_HUMAN
+Model_1;LigandScout;3BHS1_HUMAN
+Model_2;LigandScout;3BHS1_HUMAN
+AChE-1acj-tha-HBA-vers;Discovery Studio;ACES_HUMAN
+AChE-1acj-tha-xvols;Discovery Studio;ACES_HUMAN
+AChE-GNT-Hypo1-shape;Discovery Studio;ACES_HUMAN
+AChE-X015-1;Discovery Studio;ACES_HUMAN
+17b-HSD5-1ry8-rut-1.60-x-1;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1ry8-rut-1.60-x-1-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1s2a-imn-1.70-x-1;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1s2a-imn-1.70-x-1-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1s2c-flf-1.80-x-1;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1s2c-flf-1.80-x-1-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1s2c-flf-1.80-x-2-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1zq5-e04-1.30-x-1;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1zq5-e04-1.30-x-1-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-1zq5-e04-1.30-x-2-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-2f38-15m-2.00-x-1-s;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-X009-1;Discovery Studio;AK1C3_HUMAN
+17b-HSD5-X009-2;Discovery Studio;AK1C3_HUMAN
+FLAPophore6exclu_LS3-03;LigandScout;AL5AP_HUMAN
+FLAPophore7exclu_LS3-03;LigandScout;AL5AP_HUMAN
+LS3.12-CYP11B1_2T_D-1-8;LigandScout;C11B1_HUMAN
+LS3.12-CYP11B1_2T_D-1-8_refined-Veronika;LigandScout;C11B1_HUMAN
+LS3.12-CYP11B2_C-1-5;LigandScout;C11B2_HUMAN
+LS3.12-CYP11B2_C-1-5-refined-Veronika;LigandScout;C11B2_HUMAN
+CYP17_3RUK_LS4_03_MA;LigandScout;CP17A_HUMAN
+CYP17_Abi_Orteronel_LS4_03_MA;LigandScout;CP17A_HUMAN
+aromatase-X006-1;Discovery Studio;CP19A_HUMAN
+aromatase-X006-2;Discovery Studio;CP19A_HUMAN
+aromatase-X006-3;Discovery Studio;CP19A_HUMAN
+CYP2D6-quant-X012-1;Discovery Studio;CP2D6_HUMAN
+CYP2D6-X012-2;Discovery Studio;CP2D6_HUMAN
+CYP2D6-X012-3;Discovery Studio;CP2D6_HUMAN
+CYP2D6-X012-41;Discovery Studio;CP2D6_HUMAN
+CYP2D6-X012-42;Discovery Studio;CP2D6_HUMAN
+LS3-03b-17b-HSD2-model6-refined;LigandScout;DHB2_HUMAN
+LS3-03b-17b-HSD2-specific-model-12;LigandScout;DHB2_HUMAN
+LS3-03b-17b-HSD2-specific-model-6;LigandScout;DHB2_HUMAN
+LS3-03b-17b-HSD2-specific-model-8;LigandScout;DHB2_HUMAN
+17b-HSD3-DS-model-1-X007-1;Discovery Studio;DHB3_HUMAN
+17b-HSD3-DS-model-2-X007-31;Discovery Studio;DHB3_HUMAN
+17b-HSD3-LS3-1-317364-65-1-and-317364-71-9-model-4;LigandScout;DHB3_HUMAN
+17b-HSD3-LS3-1-317364-65-1-and-317364-71-9-model-5;LigandScout;DHB3_HUMAN
+17b-HSD3-LS3-1-875895-55-9-875895-40-2-model-1;LigandScout;DHB3_HUMAN
+17b-HSD3-LS3-1-Benzophenone-1-919118-27-7-model-1;LigandScout;DHB3_HUMAN
+17b-HSD3-LS3-1-Harada-2012-19-Fink-18m-model-4;LigandScout;DHB3_HUMAN
+17b-HSD3-LS3-1-Harada-2012-19-Fink-18m-model-7;LigandScout;DHB3_HUMAN
+17b-HSD4-quercetin-Wetzel-final;Discovery Studio;DHB4_HUMAN
+17b-HSD4-Quercetin-Wetzel-HBA-F-model3-2;Discovery Studio;DHB4_HUMAN
+17b-HSD4-Quercetin-Wetzel-HBA-F-model8-1;Discovery Studio;DHB4_HUMAN
+17b-HSD4-Quercetin-Wetzel-model-4-final-LS3-1;LigandScout;DHB4_HUMAN
+17b-HSD7-Fiala-DS-shapemodell_30;Discovery Studio;DHB7_HUMAN
+17b-HSD7-Fiala-DS-shapemodell_42;Discovery Studio;DHB7_HUMAN
+17b-HSD7-Fiala-DS-shapemodell_43;Discovery Studio;DHB7_HUMAN
+17b-HSD7-Fiala-DS-shapemodell_49;Discovery Studio;DHB7_HUMAN
+LS4-09-17b-HSD7-Fiala-model2-1;LigandScout;DHB7_HUMAN
+LS4-09-17b-HSD7-Fiala-model4-1;LigandScout;DHB7_HUMAN
+11b-HSD-1-refinedX005-1-HBA-model4new;Discovery Studio;DHI1_HUMAN
+11b-HSD1-X005-1-HBA-ohneShape-model4;Discovery Studio;DHI1_HUMAN
+11b-HSD1-X005-1-model1;Discovery Studio;DHI1_HUMAN
+11b-HSD-triterpenes-common-features;Discovery Studio;DHI1_HUMAN
+11b-HSD2-refinedX005-2-model2new;Discovery Studio;DHI2_HUMAN
+11b-HSD2-X005-2-model2;Discovery Studio;DHI2_HUMAN
+LS3-03a-11bHSD2-model3;LigandScout;DHI2_HUMAN
+LS3-03a11bHSD2-model5;LigandScout;DHI2_HUMAN
+LS3-03a-refined-11b-HSD2model-model3new;LigandScout;DHI2_HUMAN
+LS3-03a-refined-11bHSD2-model-model5new;LigandScout;DHI2_HUMAN
+ERa-antagonist-LS3-01-model584;LigandScout;ESR1_HUMAN
+ERa-antagonist-LS3-01-model585;LigandScout;ESR1_HUMAN
+ERa-antagonist-LS3-01-model586;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model009;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model022;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model030;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model040;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model042;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model047;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model052;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model062;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model069;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model073;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model084;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model087;LigandScout;ESR1_HUMAN
+ER-agonist-LS3-01-model099;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model567;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model571;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model572;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model573;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model574;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model575;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model577;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model578;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model580;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model583;LigandScout;ESR1_HUMAN
+ER-antagonist-LS3-01-model587;LigandScout;ESR1_HUMAN
+ERb-agonist-LS3-01-model100;LigandScout;ESR2_HUMAN
+ERb-agonist-LS3-01-model102;LigandScout;ESR2_HUMAN
+ERb-agonist-LS3-01-model103;LigandScout;ESR2_HUMAN
+ERb-agonist-LS3-01-model104;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model567;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model571;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model572;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model573;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model574;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model575;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model577;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model578;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model580;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model583;LigandScout;ESR2_HUMAN
+ERb-antagonist-LS3-01-model587;LigandScout;ESR2_HUMAN
+GR-1m2z-dex-2.50-T-1;Discovery Studio;GCR_HUMAN
+GR-1nhz-486-2.30-T-1;Discovery Studio;GCR_HUMAN
+GR-1nhz-486-2.30-T-2;Discovery Studio;GCR_HUMAN
+GR-1nhz-486-2.30-T-3;Discovery Studio;GCR_HUMAN
+GR-1nhz-486-2.30-T-4;Discovery Studio;GCR_HUMAN
+GR-1nhz-486-2.30-T-5;Discovery Studio;GCR_HUMAN
+GR-1p93-dex-2.70-T-1;Discovery Studio;GCR_HUMAN
+GR-3bqd-day-2.50-T-1;Discovery Studio;GCR_HUMAN
+GR-3bqd-day-2.50-T-2;Discovery Studio;GCR_HUMAN
+GR-3cld-gw6-2.84-T-1;Discovery Studio;GCR_HUMAN
+GR-3e7c-866-2.15-T-1;Discovery Studio;GCR_HUMAN
+GR-T001-1;Discovery Studio;GCR_HUMAN
+GR-T001-2;Discovery Studio;GCR_HUMAN
+GR-T001-3;Discovery Studio;GCR_HUMAN
+GR-T002-1;Discovery Studio;GCR_HUMAN
+GR-T002-2;Discovery Studio;GCR_HUMAN
+GR-T003-1;Discovery Studio;GCR_HUMAN
+GR-T004-1;Discovery Studio;GCR_HUMAN
+GR-T005-1;Discovery Studio;GCR_HUMAN
+GR-T006-1;Discovery Studio;GCR_HUMAN
+GR-T007-1;Discovery Studio;GCR_HUMAN
+GR-T008-1;Discovery Studio;GCR_HUMAN
+GR-T009-1;Discovery Studio;GCR_HUMAN
+GR-T010-1;Discovery Studio;GCR_HUMAN
+GR-T011-1;Discovery Studio;GCR_HUMAN
+GR-T012-1;Discovery Studio;GCR_HUMAN
+GR-T013-1;Discovery Studio;GCR_HUMAN
+GR-T014-1;Discovery Studio;GCR_HUMAN
+GR-T015-1;Discovery Studio;GCR_HUMAN
+GR-T015-2;Discovery Studio;GCR_HUMAN
+GR-T016-1;Discovery Studio;GCR_HUMAN
+GR-T017-1;Discovery Studio;GCR_HUMAN
+sEH-1VJ5mod+3ANTmod_merged(Ref.3ANT)_LS_3-02;LigandScout;HYES_HUMAN
+sEH-1ZD5_mod5_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3ANT[A]_modifiziert_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3ANT+3ANTmod_merged_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3I1Y_mod2_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3I1Y_mod4_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3KOO_mod2_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3KOO_mod5_LS_3-02;LigandScout;HYES_HUMAN
+sEH-3OTQ_mod4_LS_3-02;LigandScout;HYES_HUMAN
+sEH-C12_1_DS3.5;Discovery Studio;HYES_HUMAN
+sEH-C15_1DS3.5;Discovery Studio;HYES_HUMAN
+sEH-Cl2_Shared_mod1_LS_3-02;LigandScout;HYES_HUMAN
+5-LO-N004-1;Discovery Studio;LOX5_HUMAN
+5-LO-N004-2;Discovery Studio;LOX5_HUMAN
+5-LO-W001-5;Discovery Studio;LOX5_HUMAN
+LS4-09-5-LO-bzq_01v2;LigandScout;LOX5_HUMAN
+LS4-09-5-LO-bzq_02v2;LigandScout;LOX5_HUMAN
+LS4-09-5-LO-bzq_03v2;LigandScout;LOX5_HUMAN
+LS4-09-5-LO-bzq-02-02-16-5LOX-benzoquinone_V2;LigandScout;LOX5_HUMAN
+LS4-09-5-LO-zlt-20-01-16-zileuton;LigandScout;LOX5_HUMAN
+LS4-09-5-LO-zlt-20-01-16-zIleuton-derivatives;LigandScout;LOX5_HUMAN
+MR-2a3i-c0r-1.95-Z-1;Discovery Studio;MCR_HUMAN
+MR-2aa2-as4-1.95-Z-1;Discovery Studio;MCR_HUMAN
+MR-2aa2-as4-1.95-Z-2;Discovery Studio;MCR_HUMAN
+MR-2aa5-str-2.20-Z-1;Discovery Studio;MCR_HUMAN
+MR-2oax-snl-2.29-Z-1;Discovery Studio;MCR_HUMAN
+MR-Z001-1;Discovery Studio;MCR_HUMAN
+MR-Z001-2;Discovery Studio;MCR_HUMAN
+MR-Z002-1;Discovery Studio;MCR_HUMAN
+MR-Z002-2;Discovery Studio;MCR_HUMAN
+p38-MAPK-1a9u-sb2-800mod1_h;Discovery Studio;MK14_HUMAN
+p38-MAPK-1bl6-sb6-800mod1_h;Discovery Studio;MK14_HUMAN
+p38-MAPK-1bl7-sb4-800mod1_ha;Discovery Studio;MK14_HUMAN
+p38-MAPK-1bmk-sb5-800mod1_ha;Discovery Studio;MK14_HUMAN
+p38-MAPK-1ouk+shape;Discovery Studio;MK14_HUMAN
+p38-MAPK-1w82+shape;Discovery Studio;MK14_HUMAN
+p38-MAPK-1w83-1wbv+shape;Discovery Studio;MK14_HUMAN
+p38-MAPK-1wbvneu+shape;Discovery Studio;MK14_HUMAN
+p38-MAPK-2rg6-3cg2+shape;Discovery Studio;MK14_HUMAN
+p38-MAPK-3dt1-3ctq+shape;Discovery Studio;MK14_HUMAN
+NFkB-DNA-site-N003-1;Discovery Studio;NFKB1_HUMAN
+LXR-1p8d;Discovery Studio;NR1H2_HUMAN
+LXR-1pq6;Discovery Studio;NR1H2_HUMAN
+LXR-1pqc;Discovery Studio;NR1H2_HUMAN
+LXR-1uhl;Discovery Studio;NR1H2_HUMAN
+LXR-1upv;Discovery Studio;NR1H2_HUMAN
+LXR-1upw;Discovery Studio;NR1H2_HUMAN
+LXR-2acl;Discovery Studio;NR1H2_HUMAN
+LXR-3fal;Discovery Studio;NR1H2_HUMAN
+LXR-3fc6;Discovery Studio;NR1H2_HUMAN
+FXR-1osh-fex-1.78-d-1;Discovery Studio;NR1H4_HUMAN
+FXR-1osh-fex-1.78-d-1-s;Discovery Studio;NR1H4_HUMAN
+FXR-1osh-fex-1.78-d-2;Discovery Studio;NR1H4_HUMAN
+FXR-1osh-fex-1.78-d-2-s;Discovery Studio;NR1H4_HUMAN
+FXR-3bej-muf-1.90-x-1;Discovery Studio;NR1H4_HUMAN
+FXR-3bej-muf-1.90-x-1-s;Discovery Studio;NR1H4_HUMAN
+FXR-3bej-muf-1.90-x-2;Discovery Studio;NR1H4_HUMAN
+FXR-3bej-muf-1.90-x-2-s;Discovery Studio;NR1H4_HUMAN
+FXR-3dct-o64-2.50-x-1;Discovery Studio;NR1H4_HUMAN
+FXR-3dct-o64-2.50-x-1-s;Discovery Studio;NR1H4_HUMAN
+FXR-3dct-o64-2.50-x-2;Discovery Studio;NR1H4_HUMAN
+FXR-3dct-o64-2.50-x-2-s;Discovery Studio;NR1H4_HUMAN
+FXR-3fli-33y-2.00-x-1;Discovery Studio;NR1H4_HUMAN
+FXR-3fli-33y-2.00-x-1-s;Discovery Studio;NR1H4_HUMAN
+FXR-X008-1;Discovery Studio;NR1H4_HUMAN
+cPLA2alpha-N002-2;Discovery Studio;PA2GA_HUMAN
+COX-1-1cqe-flp-3.10-x-1;Discovery Studio;PGH1_HUMAN
+COX-1-1EQH4_LS3-01;LigandScout;PGH1_HUMAN
+COX-1-1PGE2_LS3-01;LigandScout;PGH1_HUMAN
+COX-1-1pge-isf-3.50-x-2-s;Discovery Studio;PGH1_HUMAN
+COX-1-1PGG2_LS3-01;LigandScout;PGH1_HUMAN
+COX-1-2AYL3_LS3-01;LigandScout;PGH1_HUMAN
+COX-1-2ayl-flp-2.00-x-1;Discovery Studio;PGH1_HUMAN
+COX-1-2OYU2_LS3-01;LigandScout;PGH1_HUMAN
+COX-1-X017-1;Discovery Studio;PGH1_HUMAN
+COX-2-3ln11_LS3-01;LigandScout;PGH2_HUMAN
+COX-2-3NTB1_LS3-01;LigandScout;PGH2_HUMAN
+COX-2-4COX2_LS3-01;LigandScout;PGH2_HUMAN
+COX-2-4cox-imn-2.90-x-2;Discovery Studio;PGH2_HUMAN
+COX-2-6COX3_LS3-01;LigandScout;PGH2_HUMAN
+COX-2-6cox-s58-2.80-x-1-s;Discovery Studio;PGH2_HUMAN
+PPARa-1i7g-az2-2.24-x-1;Discovery Studio;PPARA_HUMAN
+PPARa-1i7g-az2-2.24-x-1-s;Discovery Studio;PPARA_HUMAN
+PPARa-1i7g-az2-2.24-x-2;Discovery Studio;PPARA_HUMAN
+PPARa-1k7l-544-2.50-p-1;Discovery Studio;PPARA_HUMAN
+PPARa-1k7l-544-2.50-p-1-s;Discovery Studio;PPARA_HUMAN
+PPARa-1k7l-544-2.50-p-2;Discovery Studio;PPARA_HUMAN
+PPARa-1k7l-544-2.50-p-2-s;Discovery Studio;PPARA_HUMAN
+PPARa-1kkq-471-3.00-x-1;Discovery Studio;PPARA_HUMAN
+PPARa-1kkq-471-3.00-x-1-s;Discovery Studio;PPARA_HUMAN
+PPARa-P007-1;Discovery Studio;PPARA_HUMAN
+PPARd-1gwx-433-2.50-p-1;Discovery Studio;PPARD_HUMAN
+PPARd-1gwx-433-2.50-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-1y0s-331-2.65-p-1;Discovery Studio;PPARD_HUMAN
+PPARd-1y0s-331-2.65-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-1y0s-331-2.65-p-2-s;Discovery Studio;PPARD_HUMAN
+PPARd-1y0s-331-2.65-p-3;Discovery Studio;PPARD_HUMAN
+PPARd-1y0s-331-2.65-p-3-s;Discovery Studio;PPARD_HUMAN
+PPARd-2awh-vca-2.00-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-2awh-vca-2.00-p-2;Discovery Studio;PPARD_HUMAN
+PPARd-2awh-vca-2.00-p-2-s;Discovery Studio;PPARD_HUMAN
+PPARd-2b50-vca-2.00-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-2b50-vca-2.00-p-2;Discovery Studio;PPARD_HUMAN
+PPARd-2b50-vca-2.00-p-2-s;Discovery Studio;PPARD_HUMAN
+PPARd-2baw-vca-2.30-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-2j14-gni-2.80-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-3gwx-epa-2.40-p-1-s;Discovery Studio;PPARD_HUMAN
+PPARd-3gwx-epa-2.40-p-2-s;Discovery Studio;PPARD_HUMAN
+PPARg-1fm6-brl-2.10-p-1;Discovery Studio;PPARG_HUMAN
+PPARg-1fm6-brl-2.10-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1fm9-570-2.10-x-1;Discovery Studio;PPARG_HUMAN
+PPARg-1fm9-570-2.10-x-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1fm9-570-2.10-x-2;Discovery Studio;PPARG_HUMAN
+PPARg-1fm9-570-2.10-x-2-s;Discovery Studio;PPARG_HUMAN
+PPARg-1i7i-az2-2.35-x-1;Discovery Studio;PPARG_HUMAN
+PPARg-1i7i-az2-2.35-x-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1k74-544-2.30-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1knu-ypa-2.50-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1knu-ypa-2.50-p-2-s;Discovery Studio;PPARG_HUMAN
+PPARg-1nyx-drf-2.65-p-1;Discovery Studio;PPARG_HUMAN
+PPARg-1nyx-drf-2.65-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1nyx-drf-2.65-p-2-s;Discovery Studio;PPARG_HUMAN
+PPARg-1wm0-plb-2.90-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1zeo-c01-2.50-p-1;Discovery Studio;PPARG_HUMAN
+PPARg-1zeo-c01-2.50-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-1zgy-brl-1.80-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2ath-3ea-2.28-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2f4b-eha-2.07-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2fvj-ro0-1.99-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2g0g-sp0-2.54-p-1;Discovery Studio;PPARG_HUMAN
+PPARg-2g0g-sp0-2.54-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2g0h-sp3-2.30-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2gtk-208-2.10-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2hfp-nsi-2.00-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2prg-brl-2.30-p-1;Discovery Studio;PPARG_HUMAN
+PPARg-2prg-brl-2.30-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-2q59-240-2.20-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-4prg-072-2.90-p-1-s;Discovery Studio;PPARG_HUMAN
+PPARg-P002-1;Discovery Studio;PPARG_HUMAN
+mPGES-1-Hypo_62_01-non-acidic;Discovery Studio;PTGES_HUMAN
+mPGES-1-model-LS3-01;LigandScout;PTGES_HUMAN
+mPGES-1-X019-1;Discovery Studio;PTGES_HUMAN
+mPGES-1-X019-2;Discovery Studio;PTGES_HUMAN
+LS3-03b-1C85-1-model;LigandScout;PTN1_HUMAN
+LS3-03b-1C85-2-model;LigandScout;PTN1_HUMAN
+LS3-03b-1PH0-model;LigandScout;PTN1_HUMAN
+LS3-03b-1PYN-model;LigandScout;PTN1_HUMAN
+LS3-03b-1Q6S-model;LigandScout;PTN1_HUMAN
+LS3-03b-1T49-model;LigandScout;PTN1_HUMAN
+LS3-03b-2CM7-model;LigandScout;PTN1_HUMAN
+LS3-03b-2CNG-model;LigandScout;PTN1_HUMAN
+LS3-03b-2F71-model;LigandScout;PTN1_HUMAN
+LS3-03b-2QBS-model;LigandScout;PTN1_HUMAN
+PTP1b-1bzc-tpi-2.35-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1bzh-flt-2.10-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1bzj-pic-2.25-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1c83-oai-1.80-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c83-oai-1.80-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1c83-oai-1.80-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-3;Discovery Studio;PTN1_HUMAN
+PTP1b-1c84-761-2.35-d-3-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c85-oba-2.72-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1c85-oba-2.72-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c86-opa-2.30-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1c86-opa-2.30-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c87-opa-2.10-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1c87-opa-2.10-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1c88-ota-1.80-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-3;Discovery Studio;PTN1_HUMAN
+PTP1b-1ecv-878-1.95-d-3-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1g7g-inx-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1gfy-col-2.13-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1gfy-col-2.13-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1jf7-tbh-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1kak-fnp-2.50-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1kak-fnp-2.50-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1l8g-dbd-2.50-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1nl9-989-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1nl9-989-2.40-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1nny-515-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1no6-794-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1no6-794-2.40-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1nwl-964-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1nwl-964-2.40-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1nz7-901-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1ony-588-2.15-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1ony-588-2.15-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1onz-968-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1onz-968-2.40-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1ph0-418-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1ph0-418-2.20-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-1ph0-418-2.20-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1pxh-sna-2.15-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1pyn-941-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q1m-234-2.60-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6j-335-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6j-335-2.20-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6m-p27-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6m-p27-2.20-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6n-p90-2.10-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6n-p90-2.10-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6p-213-2.30-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6s-214-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6s-214-2.20-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-1q6t-600-2.30-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-1qxk-429-2.30-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2bgd-t1d-2.40-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cne-dfj-1.80-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cne-dfj-1.80-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cne-dfj-1.80-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-2cne-dfj-1.80-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnf-f32-2.20-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnf-f32-2.20-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnf-f32-2.20-d-2;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnf-f32-2.20-d-2-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cng-ize-1.90-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cng-ize-1.90-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnh-izb-1.80-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cnh-izb-1.80-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP1b-2cni-izf-2.00-d-1;Discovery Studio;PTN1_HUMAN
+PTP1b-2cni-izf-2.00-d-1-s;Discovery Studio;PTN1_HUMAN
+PTP2b-1g7f-inz-1.80-d-1;Discovery Studio;PTN1_HUMAN
+IKK2-3rzf-xnm-4.00-n-1;Discovery Studio;Q6INT1_XENLA
+IKK2-N001-6;Discovery Studio;Q6INT1_XENLA
+5a-red-R003-2;Discovery Studio;S5A2_HUMAN
+5a-red-R003-4;Discovery Studio;S5A2_HUMAN
+STS-LS3.12-model10-mostafa-2012a-21-maltais-2009a-55-XVols-binding-site;LigandScout;STS_HUMAN
+STS-LS3.12-model11-lehr-2005a-4f-nussbaumer-2003b-6g;LigandScout;STS_HUMAN
+STS-LS3.12-model12-mostafa-2012a-21-maltais-2009a-55-XVols-binding-site-HBD;LigandScout;STS_HUMAN
